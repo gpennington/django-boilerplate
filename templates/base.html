@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>{% block title_override %}{% block title %}{% endblock title %} - sitename {% endblock title_override %}</title>
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	
+	<link href="{{ STATIC_URL }}/css/style.css" type="text/css" rel="stylesheet">
+    
+	{% block extra_head %}{% endblock extra_head %}
+	{% block extra_js %}{% endblock extra_js %}
+
+</head>
+
+<body>
+
+
+</body>
+</html>
