@@ -12,6 +12,7 @@ env.static_dir = '~/static/prod'
 env.project_virtual = '~/.virtualenvs/%s' % PROJECT_ID
 env.activate = 'source ~/.virtualenvs/%s/bin/activate' % PROJECT_ID
 env.deploy_user = PROJECT_USER
+env.apache_bin_dir = "~/webapps/myproj/apache2/bin"
 
 def setup():
     pass
@@ -57,7 +58,7 @@ def samuel_l_jackson():
     print('')
     
 def kick_apache():
-    with cd('~/webapps/django_env/apache2/bin'):
+    with cd(env.apache_bin_dir):
         run("./restart")
 
 def virtualenv(command):
@@ -77,5 +78,5 @@ def migrate(env):
         virtualenv('python manage.py migrate --settings=settings.production')
 
 def build_migration(app):
-    local("python manage.py schemamigration %s --settings=settings.local" % app)
+    local("python manage.py schemamigration %s --auto --settings=settings.local" % app)
  
