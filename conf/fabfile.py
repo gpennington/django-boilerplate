@@ -6,7 +6,12 @@ import time
 env.id = PROJECT_ID
 env.user = PROJECT_USER
 env.hosts = PROJECT_HOSTS
-
+env.directory = '~/projects/%s' % PROJECT_ID
+env.virtual_dir = '~/.virtualenvs'
+env.static_dir = '~/static/prod'
+env.project_virtual = '~/.virtualenvs/%s' % PROJECT_ID
+env.activate = 'source ~/.virtualenvs/%s/bin/activate' % PROJECT_ID
+env.deploy_user = PROJECT_USER
 
 def setup():
     pass
@@ -20,27 +25,21 @@ def run_local():
 def push():
     local('git push webfaction master')
 
-
-
-
+     
 #Server Commands
 def pull():
-    local('cd ~/projects/%s' % env.id)
-    local('git pull origin')
+    with cd(env.directory):
+        run('git pull origin production')
+
 
 def install_requirements():
-    local('workon %s' % env.id)
-    local('pip install -r ~/projects/%s/conf/requirements.txt')
+    virtualenv('pip install -r conf/requirements.txt') 
 
 def deploy():
     samuel_l_jackson()
     install_requirements()        
     local('touch ~/projects/%s/conf/%s.wsgi' % env.id)
     print('Deployment of %s complete' % env.id)
-
-
-
-
 
 #Utils    
 def samuel_l_jackson():
@@ -56,3 +55,27 @@ def samuel_l_jackson():
     print('Hold on to yer butts...')
     print('')
     print('')
+    
+def kick_apache():
+    with cd('~/webapps/django_env/apache2/bin'):
+        run("./restart")
+
+def virtualenv(command):
+    with cd(env.directory):
+        run(env.activate + '&&' + command)
+
+def sync_db(env):
+    if env == "local":
+        local("python manage.py syncdb --settings=settings.local")
+    else:
+        virtualenv('python manage.py syncdb --settings=settings.production')
+    
+def migrate(env):
+    if env == "local":
+        local("python manage.py syncdb --settings=settings.local")
+    else:
+        virtualenv('python manage.py migrate --settings=settings.production')
+
+def build_migration(app):
+    local("python manage.py schemamigration %s --settings=settings.local" % app)
+ 
