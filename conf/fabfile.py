@@ -17,6 +17,7 @@ env.deploy_user = PROJECT_USER
 env.apache_bin_dir = "~/webapps/myproj/apache2/bin"
 env.log_location = "~/webapps/logs/user/error_myproj.log"
 env.git_repo = "git@github.com:myuser/%s.git" % PROJECT_ID
+env.production_branch = "production"
 
 # Utility Methods
 def view_log():
@@ -54,11 +55,11 @@ def quick_fix(msg):
     deploy()
 
 def push():
-    local('git push webfaction master')
+    local('git push %s master' % env.production_branch)
 
 def pull():
     with cd(env.directory):
-        run('git pull origin production')
+        run('git pull origin %s' % env.production_branch)
 
 def sync_db(env):
     if env == "local":
