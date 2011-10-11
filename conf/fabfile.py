@@ -69,7 +69,7 @@ def sync_db(env):
     
 def migrate(env):
     if env == "local":
-        local("python manage.py syncdb --settings=settings.local")
+        local("python manage.py migrate --settings=settings.local")
     else:
         virtualenv('python manage.py migrate --settings=settings.%s' % env)
 
