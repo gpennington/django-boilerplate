@@ -83,7 +83,7 @@ def setup():
         run('virtualenv %s --no-site-packages' % PROJECT_ID)
     run("git clone " + env.git_repo + " " + env.directory)
     with cd(env.directory):
-        run('git checkout production')
+        run('git checkout %s' % env.production_branch)
     virtualenv("easy_install http://downloads.sourceforge.net/project/mysql-python/mysql-python-test/1.2.3c1/MySQL-python-1.2.3c1.tar.gz?use_mirror=voxel")
     deploy()
 
