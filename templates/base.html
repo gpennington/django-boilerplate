@@ -18,13 +18,13 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}img/apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}img/apple-touch-icon-precomposed.png">
     <link rel="author" href="{{ STATIC_URL }}humans.txt">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
-    {% block extra_head%}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/styles.css">
+    {% block extra_head %}
     {% endblock extra_head %}
     {% comment %}
     If you're using Modernizr, be sure to include it in the head. For the most part, all other JavaScript should be at the bottom.
     {% endcomment %}
-    <script src="{{ STATIC_URL }}js/libs/modernizr/2.0.6./modernizr.min.js"></script>
+    <script src="{{ STATIC_URL }}js/libs/modernizr/2.0.6/modernizr.min.js"></script>
     {% block extra_head_js %}
     {% endblock %}
 </head>
