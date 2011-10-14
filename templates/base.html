@@ -1,20 +1,37 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>{% block title_override %}{% block title %}{% endblock title %} - sitename {% endblock title_override %}</title>
-	
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	
-	<link href="{{ STATIC_URL }}/css/style.css" type="text/css" rel="stylesheet">
-    
-	{% block extra_head %}{% endblock extra_head %}
-	{% block extra_js %}{% endblock extra_js %}
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title_override %}{% block title %}{% endblock title %} - sitename {% endblock title_override %}</title>
+    <meta name="description" content="{% block meta_description %}{% endblock meta_description %}">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    {% comment %}
+    Remove any of the icons you aren't using/don't want.
+    mathiasbynens.be/notes/touch-icons
+    {% endcomment %}
+    <link rel="icon" href="{{ STATIC_URL }}img/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}img/apple-touch-icon-precomposed.png">
+    <link rel="author" href="{{ STATIC_URL }}humans.txt">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
+    {% block extra_head%}
+    {% endblock extra_head %}
+    {% comment %}
+    If you're using Modernizr, be sure to include it in the head. For the most part, all other JavaScript should be at the bottom.
+    {% endcomment %}
+    <script src="{{ STATIC_URL }}js/libs/modernizr/2.0.6./modernizr.min.js"></script>
+    {% block extra_head_js %}
+    {% endblock %}
 </head>
-
-<body>
-
-
+<body id="{% block body_id %}{% endblock body_id %}" class="{% block body_class %}{% endblock body_class %}">
+    {% block extra_foot %}
+    {% endblock extra_foot %}
+    {% block extra_foot_js %}
+    {% endblock extra_foot %}
 </body>
 </html>
