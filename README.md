@@ -58,9 +58,6 @@ Build migration (Local)
     def build_migration(app):
         local("python manage.py schemamigration %s --auto --settings=settings.local" % app)
 
-Run Local Server Instance
-    def run_local():
-        local('python manage.py runserver --settings=settings.local')
 
 Copy static directory to server static directory
 

@@ -37,7 +37,7 @@ def install_requirements():
 def build_migration(app):
     local("python manage.py schemamigration %s --auto --settings=settings.local" % app)
 
-def run_local():
+def run_local_server():
     local('python manage.py runserver --settings=settings.local')
 
 # Copy static dir to your production static server.
